@@ -1,33 +1,38 @@
-﻿@using BibliotecaMVC.Models
+﻿@model IEnumerable<BibliotecaMVC.Models.Libro>
 
-@{
-    List<Libro> libros = ViewBag.Libros;
-}
-
-<h1>@ViewBag.Nombre</h1>
 <h2>Catálogo de Libros</h2>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Titulo</th>
-            <th>Autor</th>
-            <th>Categoria</th>
-            <th>Precio</th>
-            <th>Estado</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var libro in libros)
-        {
-            <tr>
-                <td>@libro.Id</td>
-                <td>@libro.Titulo</td>
-                <td>@libro.Autor</td>
-                <td>@libro.Categoria</td>
-                <td>$@libro.Precio</td>
-                <td>
+<a class="btn btn-primary mb-4" asp-action="Create">
+    Nuevo Libro +
+</a>
+
+<div class="row justify-content-center">
+    @foreach (var libro in Model)
+    {
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card h-100 shadow">
+
+                <img src="~/images/@libro.Imagen"
+                     class="card-img-top"
+                     alt="@libro.Titulo"
+                     style="height:300px; object-fit:cover;" />
+
+                <div class="card-body">
+
+                    <h5 class="card-title">@libro.Titulo</h5>
+
+                    <p class="card-text">
+                        <strong>Autor:</strong> @libro.Autor
+                    </p>
+
+                    <p class="card-text">
+                        <strong>Categoría:</strong> @libro.Categoria
+                    </p>
+
+                    <p class="card-text">
+                        <strong>Precio:</strong> $@libro.Precio
+                    </p>
+
                     @if (libro.Disponible)
                     {
                         <span class="badge bg-success">Disponible</span>
@@ -36,9 +41,32 @@
                     {
                         <span class="badge bg-danger">Prestado</span>
                     }
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 
+                </div>
+
+                <div class="card-footer text-center">
+
+                    <a asp-action="Details"
+                       asp-route-id="@libro.Id"
+                       class="btn btn-info btn-sm">
+                        Ver
+                    </a>
+
+                    <a asp-action="Edit"
+                       asp-route-id="@libro.Id"
+                       class="btn btn-primary btn-sm">
+                        Editar
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@libro.Id"
+                       class="btn btn-danger btn-sm">
+                        Eliminar
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    }
+</div>

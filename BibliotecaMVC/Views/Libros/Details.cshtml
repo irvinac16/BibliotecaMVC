@@ -1,0 +1,42 @@
+﻿@model BibliotecaMVC.Models.Libro
+
+<h2>Detalle del Libro</h2>
+
+<div class="mb-3 text-center">
+    <img src="~/images/@Model.Imagen"
+         alt="@Model.Titulo"
+         class="img-fluid rounded shadow"
+         style="max-height:400px;" />
+</div>
+
+<div class="mb-3">
+    <strong>Título:</strong> @Model.Titulo
+</div>
+
+<div class="mb-3">
+    <strong>Autor:</strong> @Model.Autor
+</div>
+
+<div class="mb-3">
+    <strong>Categoría:</strong> @Model.Categoria
+</div>
+
+<div class="mb-3">
+    <strong>Precio:</strong> $@Model.Precio
+</div>
+
+<div class="mb-3">
+    <strong>Estado:</strong>
+    @if (Model.Disponible)
+    {
+        <span class="badge bg-success">Disponible</span>
+    }
+    else
+    {
+        <span class="badge bg-danger">Prestado</span>
+    }
+</div>
+
+<a asp-action="Index" class="btn btn-secondary">
+    Regresar
+</a>

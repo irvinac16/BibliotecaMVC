@@ -9,5 +9,6 @@
         public string Categoria { get; set; }
         public decimal Precio { get; set; }
         public bool Disponible { get; set; }
+        public string Imagen { get; set; }
     }
 }

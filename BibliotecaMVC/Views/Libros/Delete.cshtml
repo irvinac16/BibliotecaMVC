@@ -1,0 +1,36 @@
+﻿@model BibliotecaMVC.Models.Libro
+<h2>Eliminar Libro</h2>
+<p>¿Está seguro de que desea eliminar el libro "@Model.Titulo"?</p>
+
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-3">Título</dt>
+    <dd class="col-sm-9">@Model.Titulo</dd>
+
+    <dt class="col-sm-3">Autor</dt>
+    <dd class="col-sm-9">@Model.Autor</dd>
+
+    <dt class="col-sm-3">Categoría</dt>
+    <dd class="col-sm-9">@Model.Categoria</dd>
+
+    <dt class="col-sm-3">Precio</dt>
+    <dd class="col-sm-9">$@Model.Precio</dd>
+
+    <dt class="col-sm-3">Disponible</dt>
+    <dd class="col-sm-9">
+        @(Model.Disponible ? "Sí" : "No")
+    </dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input asp-for="Id" type="hidden" />
+
+    <button type="submit" class="btn btn-danger">
+        Eliminar
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Cancelar
+    </a>
+</form>
