@@ -2,7 +2,57 @@
     ViewData["Title"] = "Acerca de";
 }
 
-<div class="text-center">
-    <h1>Gestion de Acerca de</h1>
-    <p>En este modulo se adiministra sobre acerca de la biblioteca</p>
-</div>
+<header class="about-header">
+    <h1>BibliotecaMVC</h1>
+    <p>Sistema web para la administración y consulta de información de la biblioteca.</p>
+</header>
+
+<main>
+    <section class="about-container">
+        <article class="about-content">
+            <h2>¿Quiénes somos?</h2>
+
+            <p>
+                Esta aplicación web está diseñada para gestionar y consultar información
+                relacionada con una biblioteca. Permite a los usuarios explorar el catálogo de libros,
+                ver detalles de cada libro y realizar operaciones administrativas
+                como agregar, editar o eliminar libros.
+            </p>
+
+            <p>
+                La aplicación está construida utilizando el patrón de diseño MVC
+                (Modelo-Vista-Controlador), lo que facilita la separación de responsabilidades
+                y mejora la mantenibilidad del código.
+            </p>
+        </article>
+
+        <aside class="about-info">
+            <h3>Misión</h3>
+
+            <p>
+                Nuestra misión es promover el acceso a la información y fomentar la lectura
+                entre la comunidad de usuarios de la biblioteca. Nos comprometemos a ofrecer
+                un servicio de calidad que satisfaga las necesidades de nuestros usuarios.
+            </p>
+
+            <h3>Visión</h3>
+
+            <p>
+                Nuestra visión es ser una referencia en la gestión de bibliotecas digitales,
+                ofreciendo una plataforma intuitiva y eficiente que facilite la consulta
+                y administración de recursos bibliográficos.
+            </p>
+        </aside>
+    </section>
+
+    <section class="team-section">
+        <figure>
+            <img src="~/images/biblioteca.jpg"
+                 alt="Interior de una biblioteca"/>
+
+            <figcaption>
+                Espacio representativo de nuestra biblioteca virtual.
+            </figcaption>
+        </figure>
+    </section>
+</main>

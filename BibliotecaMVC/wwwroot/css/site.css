@@ -29,3 +29,138 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+/*
+    Variables
+*/
+
+:root {
+    --color-principal: #271f39;
+    --color-secundario: #34323c;
+    --color-texto: #333333;
+    --color-blanco: #ffffff;
+}
+
+.about-header{
+    background: var(--color-principal);
+    color: var(--color-blanco);
+    text-align: center;
+    padding: 40px;
+}
+
+.about-container{
+    display: flex;
+    gap: 25px;
+    padding: 40px;
+}
+
+.about-content{
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgb(0, 0, 0,.1);
+    transition: 0.3s;
+}
+
+.about-content:hover {
+    transform: translateY(-5px);
+}
+
+.home-card {
+    transition: 0.3s;
+}
+
+.home-card:hover {
+    transform: translateY(-5px);
+}
+
+.about-info {
+    background: #eef5ff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.team-section {
+    padding: 20px 40px;
+}
+
+.team-section img {
+    width: 70%;
+    max-width: 700px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.team-section figcaption {
+    text-align: center;
+    margin-top: 10px;
+    color: gray;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .about-header {
+        padding: 25px 15px;
+    }
+
+    .about-header h1 {
+            font-size: 2rem;
+    }
+
+    .team-section {
+        padding: 20px;
+    }
+    
+    .team-section img {
+            width: 100%;
+    }
+
+    .home-hero {
+        text-align: center;
+    }
+
+    .home-hero img {
+            margin-top: 20px;
+    }
+
+    .carousel-libros .carousel-item img {
+        height: 320px;
+    }
+}
+
+.carousel-libros {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.carousel-libros .carousel-item img {
+    height: 420px;
+    object-fit: contain;
+    background-color: #f5f5f5;
+}
+
+.carousel-libros .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.carousel-libros .carousel-caption h5,
+.carousel-libros .carousel-caption p {
+     color: white;
+     margin-bottom: 5px;
+}
+
+.carousel-libros .carousel-control-prev-icon,
+.carousel-libros .carousel-control-next-icon {
+    background-color: #271f39;
+    border-radius: 50%;
+    padding: 20px;
+    background-size: 50%;
+}
