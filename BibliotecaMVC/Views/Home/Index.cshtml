@@ -110,66 +110,61 @@
     </div>
 </div>
 
-<div class="container mt-5">
+<div class="section">
     <h2 class="text-center mb-4">Nuestros Servicios</h2>
-    <div class="row">
-       <div class="col-md-4 mb-3">
-           <div class="card h-100 shadow-sm home-card">
-                <img src="~/images/categorias.jpg" class="card-img-top" alt="Categorías">
-                <div class="card-body d-flex flex-column">
-                    <p class="card-text">Categorías de la biblioteca.</p>
-                    <p class="card-text">Explora las diferentes categorías de libros disponibles en nuestra biblioteca.</p>
-                    <a asp-controller="Home" asp-action="Categorias" class="btn btn-outline-primary mt-auto">Categorías de la biblioteca</a>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 mb-3">
-            <div class="card h-100 shadow-sm home-card">
-                <img src="~/images/libros.jpg" class="card-img-top" alt="Libros" style="height: 270px; object-fit: cover;
-                                                      object-position: center bottom;">
-                <div class="card-body d-flex flex-column">
-                    <p class="card-text">Libros de la biblioteca.</p>
-                    <p class="card-text">Explora nuestra amplia selección de libros disponibles en la biblioteca.</p>
-                    <a asp-controller="Libros" asp-action="Index" class="btn btn-outline-primary mt-auto">Libros de la biblioteca</a>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 mb-3">
-            <div class="card h-100 shadow-sm home-card">
-                <img src="~/images/autores.jpg" class="card-img-top" alt="Autores">
-                <div class="card-body d-flex flex-column">
-                    <p class="card-text">Autores de la biblioteca.</p>
-                    <p class="card-text">Descubre los autores más destacados en nuestra biblioteca.</p>
-                    <a asp-controller="Autores" asp-action="Index" class="btn btn-outline-primary mt-auto">Autores de la biblioteca</a>
-
-                </div>
-            </div>
-        </div>
+    <div class="contenedor media-query">
+        @await Html.PartialAsync("_ServiceCard", new BibliotecaMVC.Models.ServiceCard
+        {
+            ImageUrl = Url.Content("~/images/categorias.jpg"),
+            Title = "Categorías",
+            Text = "Explora las diferentes categorías de libros disponibles en nuestra biblioteca.",
+            Controller = "Home",
+            Action = "Categorias",
+            ButtonText = "Ver Categorías"
+        })
+        @await Html.PartialAsync("_ServiceCard", new BibliotecaMVC.Models.ServiceCard
+        {
+            ImageUrl = Url.Content("~/images/libros.jpg"),
+            Title = "Libros",
+            Text = "Explora nuestra amplia selección de libros disponibles en la biblioteca.",
+            Controller = "Libros",
+            Action = "Index",
+            ButtonText = "Ver Libros"
+        })
+        @await Html.PartialAsync("_ServiceCard", new BibliotecaMVC.Models.ServiceCard
+        {
+            ImageUrl = Url.Content("~/images/autores.jpg"),
+            Title = "Autores",
+            Text = "Descubre los autores más destacados en nuestra biblioteca.",
+            Controller = "Autores",
+            Action = "Index",
+            ButtonText = "Ver Autores"
+        })
     </div>
 </div>
 
-<div class="container mt-5">
-    <div class="row text-center">
-        <div class="col-md-4">
+<section class="container mt-5">
+    <h2 class="text-center mb-4">Nuestra Biblioteca</h2>
+
+    <div class="library-grid text-center">
+
+        <div class="library-grid-item">
             <h2 class="text-primary">500+</h2>
             <p>Libros disponibles</p>
         </div>
 
-        <div class="col-md-4">
+        <div class="library-grid-item">
             <h2 class="text-primary">120+</h2>
             <p>Autores registrados</p>
         </div>
 
-        <div class="col-md-4">
+        <div class="library-grid-item">
             <h2 class="text-primary">25+</h2>
             <p>Categorías</p>
         </div>
+
     </div>
-</div>
+</section>
 
 <div class="container mt-5">
     <div class="bg-primary text-white rounded p-5 text-center">

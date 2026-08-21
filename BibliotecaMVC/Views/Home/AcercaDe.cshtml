@@ -27,21 +27,17 @@
         </article>
 
         <aside class="about-info">
-            <h3>Misión</h3>
+            @await Html.PartialAsync("_InfoCard", new BibliotecaMVC.Models.InfoCard
+            {
+                Title = "Misión",
+                Text = "Nuestra misión es promover el acceso a la información y fomentar la lectura entre la comunidad de usuarios de la biblioteca. Nos comprometemos a ofrecer un servicio de calidad que satisfaga las necesidades de nuestros usuarios."
+            })
 
-            <p>
-                Nuestra misión es promover el acceso a la información y fomentar la lectura
-                entre la comunidad de usuarios de la biblioteca. Nos comprometemos a ofrecer
-                un servicio de calidad que satisfaga las necesidades de nuestros usuarios.
-            </p>
-
-            <h3>Visión</h3>
-
-            <p>
-                Nuestra visión es ser una referencia en la gestión de bibliotecas digitales,
-                ofreciendo una plataforma intuitiva y eficiente que facilite la consulta
-                y administración de recursos bibliográficos.
-            </p>
+            @await Html.PartialAsync("_InfoCard", new BibliotecaMVC.Models.InfoCard
+            {
+                Title = "Visión",
+                Text = "Nuestra visión es ser una referencia en la gestión de bibliotecas digitales, ofreciendo una plataforma intuitiva y eficiente que facilite la consulta y administración de recursos bibliográficos."
+            })
         </aside>
     </section>
 

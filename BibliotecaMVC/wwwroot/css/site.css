@@ -66,18 +66,22 @@ body {
     transform: translateY(-5px);
 }
 
-.home-card {
-    transition: 0.3s;
-}
-
-.home-card:hover {
-    transform: translateY(-5px);
-}
-
 .about-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-card {
     background: #eef5ff;
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
 }
 
 .team-section {
@@ -97,41 +101,6 @@ body {
     margin-top: 10px;
     color: gray;
     font-style: italic;
-}
-
-@media (max-width: 768px) {
-    .about-container {
-        flex-direction: column;
-        padding: 20px;
-    }
-
-    .about-header {
-        padding: 25px 15px;
-    }
-
-    .about-header h1 {
-            font-size: 2rem;
-    }
-
-    .team-section {
-        padding: 20px;
-    }
-    
-    .team-section img {
-            width: 100%;
-    }
-
-    .home-hero {
-        text-align: center;
-    }
-
-    .home-hero img {
-            margin-top: 20px;
-    }
-
-    .carousel-libros .carousel-item img {
-        height: 320px;
-    }
 }
 
 .carousel-libros {
@@ -163,4 +132,81 @@ body {
     border-radius: 50%;
     padding: 20px;
     background-size: 50%;
+}
+
+.card-demo {
+    transition: 0.3s;
+}
+
+.card-demo .card-img-top {
+    height: 280px;
+    object-fit: cover;
+}
+
+.card-demo:hover {
+    transform: translateY(-5px);
+}
+.media-query {
+    display: flex;
+    gap: 20px;
+}
+
+.media-query .card-demo {
+    flex: 1;
+}
+
+.library-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.library-grid-item {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+
+    .about-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .about-header {
+        padding: 25px 15px;
+    }
+
+    .about-header h1 {
+        font-size: 2rem;
+    }
+
+    .team-section {
+        padding: 20px;
+    }
+
+    .team-section img {
+        width: 100%;
+    }
+
+    .home-hero {
+        text-align: center;
+    }
+
+    .home-hero img {
+        margin-top: 20px;
+    }
+
+    .carousel-libros .carousel-item img {
+        height: 320px;
+    }
+
+    .media-query {
+        flex-direction: column;
+    }
+    .library-grid {
+        grid-template-columns: 1fr;
+    }
 }
