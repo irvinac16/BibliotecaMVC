@@ -5,11 +5,12 @@ namespace BibliotecaMVC.Controllers
 {
     public class LibrosController : Controller
     {
-        private static List<Libro> _libros = new List<Libro>()
+
+        public static List<Libro> _libros = new List<Libro>
         {
-            new Libro
+                new Libro
             {
-                Id = 1,
+            Id = 1,
                 Titulo = "Cien años de soledad",
                 Autor = "Gabriel García Márquez",
                 Categoria = "Novela",
@@ -47,18 +48,19 @@ namespace BibliotecaMVC.Controllers
                 Disponible = false,
                 Imagen = "pedro-paramo-juan-rulfo.jpg"
             },
-            new Libro
-            {
-                Id = 5,
-                Titulo = "Rayuela",
-                Autor = "Julio Cortázar",
-                Categoria = "Novela",
-                Precio = 15.99m,
-                Disponible = true,
-                Imagen = "rayuela.jpg"
-            }
-        };
-        public IActionResult Index()
+                new Libro
+                {
+                    Id = 5,
+                    Titulo = "Rayuela",
+                    Autor = "Julio Cortázar",
+                    Categoria = "Novela",
+                    Precio = 15.99m,
+                    Disponible = true,
+                    Imagen = "rayuela.jpg"
+                }
+    };
+
+    public IActionResult Index()
         {
             return View(_libros);
         }
