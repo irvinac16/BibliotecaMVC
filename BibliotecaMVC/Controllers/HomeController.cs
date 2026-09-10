@@ -11,11 +11,6 @@ namespace BibliotecaMVC.Controllers
             return View();
         }
 
-        public IActionResult Categorias()
-        {
-            return View();
-        }
-
         public IActionResult Usuarios()
         {
             return View();

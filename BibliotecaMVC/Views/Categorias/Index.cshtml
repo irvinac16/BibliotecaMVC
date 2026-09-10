@@ -1,0 +1,64 @@
+﻿@model IEnumerable<BibliotecaMVC.Models.Categoria>
+@{
+    ViewData["Title"] = "Categorias";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Listado de Categorias</h2>
+</div>
+
+<a asp-action="Create" asp-controller="Categorias" class="btn btn-primary">Agregar Categoria</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var categoria in Model)
+        {
+            <tr>
+                <td>@categoria.ID</td>
+                <td>@categoria.Nombre</td>
+                <td>@categoria.Descripcion</td>
+                <td>
+                    <a asp-action="Edit"
+                       asp-route-id="@categoria.ID"
+                       class="btn btn-warning btn-sm">
+                        Editar
+                    </a>
+
+                    <form asp-action="Delete"
+                          asp-route-id="@categoria.ID"
+                          method="post"
+                          style="display:inline;">
+                        <button type="submit"
+                                class="btn btn-danger btn-sm"
+                                onclick="return confirm('¿Esta seguro de eliminar esta categoria?');">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script> 
+        var mensaje = '@(TempData["SuccessMessage"] ?? "")';
+        if (mensaje) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: mensaje,
+                timer: 3000,
+                showConfirmButton: false
+            });
+        }
+    </script>
+}
