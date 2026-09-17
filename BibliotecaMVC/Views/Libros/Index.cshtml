@@ -1,71 +1,87 @@
 ﻿@model IEnumerable<BibliotecaMVC.Models.Libro>
 
-<h2>Catálogo de Libros</h2>
+@{
+    ViewData["Title"] = "Catálogo de Libros";
+}
 
-<a class="btn btn-primary mb-4" asp-action="Create">
-    Nuevo Libro +
-</a>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold mb-1">Catálogo de Libros</h2>
+        <p class="text-muted mb-0">
+            Explora los libros disponibles en nuestra biblioteca.
+        </p>
+    </div>
 
-<div class="row justify-content-center">
+    <a class="btn btn-primary" asp-action="Create">
+        + Nuevo Libro
+    </a>
+</div>
+
+<div class="row g-4">
     @foreach (var libro in Model)
     {
-        <div class="col-md-4 col-lg-3 mb-4">
-            <div class="card h-100 shadow">
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+            <div class="card h-100 shadow-sm border-0">
 
                 <img src="~/images/@libro.Imagen"
                      class="card-img-top"
                      alt="@libro.Titulo"
                      style="height:300px; object-fit:cover;" />
 
-                <div class="card-body">
+                <div class="card-body d-flex flex-column">
 
-                    <h5 class="card-title">@libro.Titulo</h5>
+                    <h5 class="card-title fw-bold">
+                        @libro.Titulo
+                    </h5>
 
-                    <p class="card-text">
+                    <p class="text-muted mb-2">
                         <strong>Autor:</strong> @libro.Autor
                     </p>
 
-                    <p class="card-text">
+                    <p class="text-muted mb-2">
                         <strong>Categoría:</strong> @libro.Categoria
                     </p>
 
-                    <p class="card-text">
-                        <strong>Precio:</strong> $@libro.Precio
+                    <p class="fs-5 fw-bold mb-3">
+                        $@libro.Precio.ToString("0.00")
                     </p>
 
-                    @if (libro.Disponible)
-                    {
-                        <span class="badge bg-success">Disponible</span>
-                    }
-                    else
-                    {
-                        <span class="badge bg-danger">Prestado</span>
-                    }
+                    <div class="mb-3">
+                        @if (libro.Disponible)
+                        {
+                            <span class="badge bg-success">
+                                Disponible
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">
+                                Prestado
+                            </span>
+                        }
+                    </div>
+
+                    <div class="mt-auto d-flex gap-2">
+                        <a asp-action="Details"
+                           asp-route-id="@libro.Id"
+                           class="btn btn-info btn-sm flex-fill">
+                            Ver
+                        </a>
+
+                        <a asp-action="Edit"
+                           asp-route-id="@libro.Id"
+                           class="btn btn-primary btn-sm flex-fill">
+                            Editar
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@libro.Id"
+                           class="btn btn-danger btn-sm flex-fill">
+                            Eliminar
+                        </a>
+                    </div>
 
                 </div>
-
-                <div class="card-footer text-center">
-
-                    <a asp-action="Details"
-                       asp-route-id="@libro.Id"
-                       class="btn btn-info btn-sm">
-                        Ver
-                    </a>
-
-                    <a asp-action="Edit"
-                       asp-route-id="@libro.Id"
-                       class="btn btn-primary btn-sm">
-                        Editar
-                    </a>
-
-                    <a asp-action="Delete"
-                       asp-route-id="@libro.Id"
-                       class="btn btn-danger btn-sm">
-                        Eliminar
-                    </a>
-
-                </div>
-
             </div>
         </div>
     }
