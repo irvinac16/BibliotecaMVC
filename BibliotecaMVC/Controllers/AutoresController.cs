@@ -63,36 +63,31 @@ namespace BibliotecaMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Autor autor)
         {
+            if (id != autor.Id)
+            {
+                return BadRequest();
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(autor);
             }
-            var existingAutor = await _context.Autores.FindAsync(autor.Id);
-            if (existingAutor == null)
+            var exists = await _context.Autores.AnyAsync(a => a.Id == id);
+            if (!exists)
             {
                 return NotFound();
             }
-            _context.Autores.Update(autor);
+            _context.Update(autor);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             var autor = await _context.Autores.FindAsync(id);
             if (autor == null)
-            {
-                return NotFound();
-            }
-            return View(autor);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(Autor autor)
-        {
-            var existingAutor = await _context.Autores.FindAsync(autor.Id);
-            if (existingAutor == null)
             {
                 return NotFound();
             }

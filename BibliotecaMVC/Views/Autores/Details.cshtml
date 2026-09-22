@@ -2,17 +2,31 @@
 @{
     ViewData["Title"] = "Detalles del Autor";
 }
-<h1>@Model.Nombre @Model.Apellido</h1>
 
-<dl class="row">
-    <dt>Nacionalidad</dt>
-    <dd>@Model.Nacionalidad</dd>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h2 class="card-title">@Model.Nombre</h2>
+        <h6 class="card-subtitle mb-3 text-muted">@Model.Nacionalidad</h6>
+    
 
-    <dt>Fecha de Nacimiento</dt>
-    <dd>@Model.FechaNacimiento.ToString("yyyy-MM-dd")</dd>
+        <dl class="row">
+            <dt class="col-sm-4">Fecha de Nacimiento</dt>
+            <dd class="col-sm-8">@Model.FechaNacimiento.ToString("yyyy-MM-dd")</dd>
 
-    <dt>Edad</dt>
-    <dd>@((DateTime.Now.Year - Model.FechaNacimiento.Year)) años</dd>
-</dl>
+            <dt class="col-sm-4">Edad</dt>
+            <dd class="col-sm-8">@((DateTime.Now.Year - Model.FechaNacimiento.Year)) años</dd>
+        </dl>
 
-<a asp-action="Index" class="btn btn-primary">Volver al listado</a>
+        <div class="d-flex gap-2">
+            <a class="btn btn-outline-secondary swal-edit-link" asp-action="Edit" asp-route-id="@Model.Id">Editar</a>
+            <a asp-action="Index" class="btn btn-primary ms-auto">Volver al listado</a>
+            <form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="d-inline swal-delete-form" data-tipo="autor">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+

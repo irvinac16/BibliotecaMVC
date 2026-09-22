@@ -53,7 +53,7 @@ namespace BibliotecaMVC.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            var libro = await _context.Libros.FirstOrDefaultAsync(x => x.Id == id);
+            var libro = await _context.Libros.FindAsync(id);
             if (libro == null)
             {
                 return NotFound();
@@ -69,24 +69,27 @@ namespace BibliotecaMVC.Controllers
             {
                 return View(libro);
             }
-            var existingLibro = await _context.Libros.FirstOrDefaultAsync(x => x.Id == libro.Id);
+            var existingLibro = await _context.Libros.FindAsync(libro.Id);
             if (existingLibro == null)
             {
                 return NotFound();
             }
+
             existingLibro.Titulo = libro.Titulo;
             existingLibro.Autor = libro.Autor;
             existingLibro.Categoria = libro.Categoria;
             existingLibro.Precio = libro.Precio;
             existingLibro.Imagen = libro.Imagen;
             existingLibro.Disponible = libro.Disponible;
+
+            _context.Libros.Update(existingLibro);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Delete(int id)
         {
-            var libro = await _context.Libros.FirstOrDefaultAsync(x => x.Id == id);
+            var libro = await _context.Libros.FindAsync(id);
             if (libro == null)
             {
                 return NotFound();
@@ -98,7 +101,7 @@ namespace BibliotecaMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(Libro libro)
         {
-            var existingLibro = await _context.Libros.FirstOrDefaultAsync(x => x.Id == libro.Id);
+            var existingLibro = await _context.Libros.FindAsync(libro.Id);
 
             if (existingLibro == null)
             {
