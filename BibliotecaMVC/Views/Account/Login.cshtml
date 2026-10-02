@@ -1,0 +1,89 @@
+﻿@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Iniciar sesión";
+}
+
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-5">
+
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+
+                <div class="mb-4 text-center">
+                    <h2 class="fw-bold mb-1">Iniciar sesión</h2>
+                    <p class="text-muted mb-0">
+                        Ingresa tus credenciales para acceder a BibliotecaMVC.
+                    </p>
+                </div>
+
+                <form asp-action="Login" method="post">
+
+                    <input type="hidden" asp-for="ReturnUrl" />
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="text-danger mb-3">
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="UsernameOrEmail"
+                               class="form-label fw-semibold">
+                        </label>
+
+                        <input asp-for="UsernameOrEmail"
+                               class="form-control"
+                               autocomplete="username"
+                               placeholder="Usuario o correo electrónico" />
+
+                        <span asp-validation-for="UsernameOrEmail"
+                              class="text-danger">
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password"
+                               class="form-label fw-semibold">
+                        </label>
+
+                        <input asp-for="Password"
+                               class="form-control"
+                               autocomplete="current-password"
+                               placeholder="Ingrese su contraseña" />
+
+                        <span asp-validation-for="Password"
+                              class="text-danger">
+                        </span>
+                    </div>
+
+                    <div class="form-check mb-4">
+                        <input asp-for="RememberMe"
+                               class="form-check-input" />
+
+                        <label asp-for="RememberMe"
+                               class="form-check-label">
+                        </label>
+                    </div>
+
+                    <div class="d-flex gap-2 justify-content-between">
+                        <a asp-action="Register"
+                           class="btn btn-secondary">
+                            Crear cuenta
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-primary">
+                            Iniciar sesión
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
