@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Acceso Denegado";
+}
+
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4 text-center">
+
+                <h1 class="text-danger fw-bold mb-3">Acceso denegado</h1>
+
+                <p class="text-muted mb-4">
+                    Tu cuenta no tiene permisos para realizar esta operación.
+                    Si necesitas acceder a esta función, contacta con un administrador.
+                </p>
+
+                <a asp-controller="Libros" asp-action="Index" class="btn btn-primary">Volver al catálogo</a>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary ms-2">Ir al inicio</a>
+            </div>
+        </div>
+    </div>
+</div>

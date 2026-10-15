@@ -12,7 +12,12 @@
         </p>
     </div>
 
-    <a class="btn btn-primary" asp-action="Create">+ Nuevo Libro</a>
+    @if (User.IsInRole("Administrador"))
+    {
+        <a class="btn btn-primary" asp-action="Create">
+            + Nuevo Libro
+        </a>
+    }
 </div>
 
 <div class="row g-4">
@@ -53,17 +58,24 @@
                         }
                     </div>
 
-                    <div class="mt-auto d-flex gap-2">
-                        <a asp-action="Details" asp-route-id="@libro.Id" 
-                        class="btn btn-outline-primary">Ver</a>
+                    <div class="mt-auto d-flex gap-2 flex-wrap">
+                        <a asp-action="Details" asp-route-id="@libro.Id" class="btn btn-outline-primary">Ver</a>
 
-                        <a asp-action="Edit" asp-route-id="@libro.Id"
-                           class="btn btn-outline-secondary">Editar</a>
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@libro.Id" class="btn btn-outline-secondary">Editar</a>
 
-                        <form asp-action="Delete" asp-route-id="@libro.Id" method="post" class="d-inline swal-delete-form" data-tipo="libro">
-                            @Html.AntiForgeryToken()
-                            <button type="submit" class="btn btn-outline-danger">Eliminar</button>
-                        </form>
+                            <form asp-action="Delete"
+                                  asp-route-id="@libro.Id"
+                                  method="post"
+                                  class="d-inline swal-delete-form"
+                                  data-tipo="libro">
+
+                                @Html.AntiForgeryToken()
+
+                                <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+                            </form>
+                        }
                     </div>
 
                 </div>

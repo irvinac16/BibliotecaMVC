@@ -1,10 +1,12 @@
 ﻿@model BibliotecaMVC.Models.Libro
+
 @{
     ViewData["Title"] = "Detalles del Libro";
 }
 
-<div class="card shadow sm">
+<div class="card shadow-sm">
     <div class="card-body">
+
         <div class="mb-3 text-center">
             <img src="~/images/@Model.Imagen"
                  alt="@Model.Titulo"
@@ -25,7 +27,7 @@
         <dl class="row">
             <dt class="col-sm-4"><strong>Categoría</strong></dt>
             <dd class="col-sm-8">@Model.Categoria</dd>
-        </dl>        
+        </dl>
 
         <dl class="row">
             <dt class="col-sm-4"><strong>Precio</strong></dt>
@@ -35,26 +37,40 @@
         <dl class="row">
             <dt class="col-sm-4"><strong>Estado</strong></dt>
             <dd class="col-sm-8">
-            @if (Model.Disponible)
-            {
-                <span class="badge bg-success">Disponible</span>
-            }
-            else
-            {
-                <span class="badge bg-danger">Prestado</span>
-            }
+                @if (Model.Disponible)
+                {
+                    <span class="badge bg-success">Disponible</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">Prestado</span>
+                }
             </dd>
         </dl>
 
-        <div class="d-flex gap-2">
-            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Editar</a>
-            <a asp-action="Index" class="btn btn-primary ms-auto">Volver al listado</a>
-            <form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="d-inline swal-delete-form" data-tipo="libro">
-                @Html.AntiForgeryToken()    
-                <button type="submit" class="btn btn-outline-danger">Eliminar</button>
-            </form>
-        </div>
+        <div class="d-flex gap-2 flex-wrap">
 
+            @if (User.IsInRole("Administrador"))
+            {
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Editar</a>
+            }
+
+            <a asp-action="Index" class="btn btn-primary ms-auto">Volver al listado</a>
+
+            @if (User.IsInRole("Administrador"))
+            {
+                <form asp-action="Delete"
+                      asp-route-id="@Model.Id"
+                      method="post"
+                      class="d-inline swal-delete-form"
+                      data-tipo="libro">
+
+                    @Html.AntiForgeryToken()
+
+                    <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+                </form>
+            }
+
+        </div>
     </div>
 </div>
-
