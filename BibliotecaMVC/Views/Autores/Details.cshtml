@@ -18,12 +18,18 @@
         </dl>
 
         <div class="d-flex gap-2">
+            @if (User.IsInRole("Administrador") || User.IsInRole("Bibliotecario"))
+            {
             <a class="btn btn-outline-secondary swal-edit-link" asp-action="Edit" asp-route-id="@Model.Id">Editar</a>
+            }
             <a asp-action="Index" class="btn btn-primary ms-auto">Volver al listado</a>
-            <form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="d-inline swal-delete-form" data-tipo="autor">
-                @Html.AntiForgeryToken()
-                <button type="submit" class="btn btn-outline-danger">Eliminar</button>
-            </form>
+            @if (User.IsInRole("Administrador"))
+            {
+                <form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="d-inline swal-delete-form" data-tipo="autor">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+                </form>
+            }
         </div>
 
     </div>

@@ -50,14 +50,14 @@
 
         <div class="d-flex gap-2 flex-wrap">
 
-            @if (User.IsInRole("Administrador"))
+            @if (User.IsInRole("Administrador") || User.IsInRole("Bibliotecario"))
             {
                 <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Editar</a>
             }
 
             <a asp-action="Index" class="btn btn-primary ms-auto">Volver al listado</a>
 
-            @if (User.IsInRole("Administrador"))
+            @if (User.IsInRole("Administrador") || User.IsInRole("Bibliotecario"))
             {
                 <form asp-action="Delete"
                       asp-route-id="@Model.Id"

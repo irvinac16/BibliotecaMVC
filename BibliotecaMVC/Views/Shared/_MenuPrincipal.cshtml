@@ -50,6 +50,14 @@
                             <span class="badge bg-success me-lg-2 mb-2 mb-lg-0">Administrador</span>
                         </li>
                     }
+
+                    else if (User.IsInRole("Bibliotecario"))
+                    {
+                        <li class="nav-item">
+                            <span class="badge bg-info me-lg-2 mb-2 mb-lg-0">Bibliotecario</span>
+                        </li>
+                    }
+
                     else if (User.IsInRole("Usuario"))
                     {
                         <li class="nav-item">

@@ -95,22 +95,22 @@ namespace BibliotecaMVC.Controllers
             if (result.Succeeded)
             {
                 var resultadoRol = await _userManager.AddToRoleAsync(user, "Usuario");
-
-                if (!resultadoRol.Succeeded)
+                if (resultadoRol.Succeeded)
                 {
-                    foreach (var error in resultadoRol.Errors)
-                    {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
-                    await _userManager.DeleteAsync(user);
-                    return View(model);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("Login");
                 }
-                return RedirectToAction(nameof(Login));
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
             }
-
-            foreach (var error in result.Errors)
+            else
             {
-                ModelState.AddModelError(string.Empty, error.Description);
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
             }
             return View(model);
         }

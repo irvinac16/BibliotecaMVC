@@ -50,6 +50,7 @@ app.MapControllerRoute(
 
 
 const string rolAdministrador = "Administrador";
+const string rolBibliotecario = "Bibliotecario";
 const string rolUsuario = "Usuario";
 const string nombreUsuarioAdministrador = "Jarvis";
 
@@ -60,7 +61,7 @@ using (var scope = app.Services.CreateScope())
     var roleManager = servicios.GetRequiredService<RoleManager<IdentityRole>>();
     var userManager = servicios.GetRequiredService<UserManager<IdentityUser>>();
 
-    foreach (var nombreRol in new[] { rolAdministrador, rolUsuario })
+    foreach (var nombreRol in new[] { rolAdministrador, rolBibliotecario, rolUsuario })
     {
         if (!await roleManager.RoleExistsAsync(nombreRol))
         {
