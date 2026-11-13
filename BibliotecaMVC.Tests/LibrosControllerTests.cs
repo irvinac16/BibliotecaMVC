@@ -1,5 +1,4 @@
-﻿
-using BibliotecaMVC.Controllers;
+﻿using BibliotecaMVC.Controllers;
 using BibliotecaMVC.Data;
 using BibliotecaMVC.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -60,7 +59,7 @@ namespace BibliotecaMVC.Tests
 
             var controller = CreateController(context);
 
-            var result = await controller.Index();
+            var result = await controller.Index(null, null);
 
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<List<Libro>>(viewResult.Model);
@@ -75,7 +74,7 @@ namespace BibliotecaMVC.Tests
             await using var context = CreateContext();
             var controller = CreateController(context);
 
-            var result = await controller.Index();
+            var result = await controller.Index(null, null);
 
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<List<Libro>>(viewResult.Model);
@@ -482,7 +481,7 @@ namespace BibliotecaMVC.Tests
             var loggerMock = new Mock<ILogger<LibrosController>>();
             var controller = new LibrosController(context, loggerMock.Object);
 
-            await controller.Index();
+            await controller.Index(null, null);
 
             loggerMock.Verify(
                 logger => logger.Log(

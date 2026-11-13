@@ -19,14 +19,49 @@ namespace BibliotecaMVC.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index()
+
+        public async Task<IActionResult> Index(string? autor, string? categoria)
         {
             _logger.LogInformation("Consultando lista de libros");
+
             try
             {
-                var libros = await _context.Libros.ToListAsync();
-                return View(libros);
+                var consulta = _context.Libros.AsQueryable();
 
+                if (!string.IsNullOrWhiteSpace(autor))
+                {
+                    consulta = consulta.Where(l => l.Autor.Contains(autor));
+                }
+
+                if (!string.IsNullOrWhiteSpace(categoria))
+                {
+                    consulta = consulta.Where(l => l.Categoria.Contains(categoria));
+                }
+
+                var libros = await consulta.ToListAsync();
+
+                var todosLosLibros = await _context.Libros
+                    .AsNoTracking()
+                    .ToListAsync();
+
+                ViewBag.Autores = todosLosLibros
+                    .Select(l => l.Autor)
+                    .Where(a => !string.IsNullOrWhiteSpace(a))
+                    .Distinct()
+                    .OrderBy(a => a)
+                    .ToList();
+
+                ViewBag.Categorias = todosLosLibros
+                    .Select(l => l.Categoria)
+                    .Where(c => !string.IsNullOrWhiteSpace(c))
+                    .Distinct()
+                    .OrderBy(c => c)
+                    .ToList();
+
+                ViewBag.AutorSeleccionado = autor;
+                ViewBag.CategoriaSeleccionada = categoria;
+
+                return View(libros);
             }
             catch (Exception ex)
             {
@@ -34,6 +69,7 @@ namespace BibliotecaMVC.Controllers
                 throw;
             }
         }
+
 
         public async Task<IActionResult> Details(int id)
         {

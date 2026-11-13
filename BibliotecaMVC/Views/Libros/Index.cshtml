@@ -12,13 +12,72 @@
         </p>
     </div>
 
-    @if (User.IsInRole("Administrador") || User.IsInRole("Bibliotecario"))
-    {
-        <a class="btn btn-primary" asp-action="Create">
-            + Nuevo Libro
+    <div class="d-flex gap-2 flex-wrap">
+
+        <a class="btn btn-outline-primary" asp-route-autor="@ViewBag.AutorSeleccionado" asp-route-categoria="@ViewBag.CategoriaSeleccionada" asp-controller="Reportes" asp-action="Reporte" target="_blank" rel="noopener"><i class="bi bi-eye"></i>
+            Generar Reporte
         </a>
-    }
+
+        <a class="btn btn-outline-danger" asp-route-autor="@ViewBag.AutorSeleccionado" asp-route-categoria="@ViewBag.CategoriaSeleccionada" asp-controller="Reportes" asp-action="DescargarPDF">
+            <i class="bi bi-file-earmark-pdf"></i>
+            Descargar Reporte
+        </a>
+        
+        <a class="btn btn-outline-success" asp-route-autor="@ViewBag.AutorSeleccionado" asp-route-categoria="@ViewBag.CategoriaSeleccionada" asp-controller="Reportes" asp-action="ExportarExcel">
+            <i class="bi bi-file-earmark-excel"></i>
+            Exportar a Excel
+        </a>
+
+        @if (User.IsInRole("Administrador") || User.IsInRole("Bibliotecario"))
+        {
+            <a class="btn btn-primary" asp-action="Create">
+                + Nuevo Libro
+            </a>
+        }
+
+    </div>
 </div>
+
+<div class="card shadow-sm border-0 mb-4">
+    <div class="card-body">
+        <form asp-controller="Libros" asp-action="Index" method="get">
+            <div class="row g-3 align-items-end">
+
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Filtrar por autor</label>
+
+                    <select name="autor" class="form-select">
+                        <option value="">Todos los autores</option>
+
+                        @foreach (var autor in ViewBag.Autores)
+                        {
+                            <option value="@autor" selected="@(ViewBag.AutorSeleccionado == autor)">@autor</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Filtrar por categoría</label>
+
+                    <select name="categoria" class="form-select">
+                        <option value="">Todas las categorías</option>
+
+                        @foreach (var categoria in ViewBag.Categorias)
+                        {
+                            <option value="@categoria" selected="@(ViewBag.CategoriaSeleccionada == categoria)">@categoria</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-4 d-flex gap-2">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-funnel"></i>Filtrar</button>
+                    <a asp-controller="Libros" asp-action="Index" class="btn btn-outline-secondary">Limpiar filtros</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 <div class="row g-4">
     @foreach (var libro in Model)
